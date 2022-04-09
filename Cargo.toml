@@ -20,4 +20,4 @@ smart-leds-trait = "0.2.0"
 embedded-hal = "0.2.4"
 
 # CodeGen macros
-ws2812-spi-write-constants = { path = "ws2812-spi-write-constants" }
+ws2812-spi-write-constants = { path = "ws2812-spi-write-constants", version="0.1.0" }
