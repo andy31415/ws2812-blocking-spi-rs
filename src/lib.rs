@@ -15,7 +15,7 @@ ws2812_constants!(WRITE_4_BYTE_CONSTANTS);
 
 /// Wraps a SPI Writer to represent a WS2821 LED array.
 ///
-/// Examples:
+/// # Examples:
 ///
 /// ```
 /// use embedded_hal::blocking::spi::Write;
@@ -23,7 +23,24 @@ ws2812_constants!(WRITE_4_BYTE_CONSTANTS);
 ///
 /// fn create<SPI: Write<u8>>(spi: SPI) -> Ws2812BlockingWriter<SPI> {
 ///    Ws2812BlockingWriter::new(spi)
-/// }    
+/// }
+///
+/// ```
+///
+/// ```
+/// use embedded_hal::blocking::spi::Write;
+/// use ws2812_blocking_spi::Ws2812BlockingWriter;
+/// use smart_leds_trait::{RGB8, SmartLedsWrite};
+///
+/// fn show<SPI: Write<u8>>(leds: &mut Ws2812BlockingWriter<SPI>) {
+///    let mut data = [RGB8::default(); 3];
+///    
+///    data[0] = [0xFF_u8, 0_u8, 0_u8].into();  // Full RED
+///    data[1] = [0_u8, 0xFF_u8, 0_u8].into();  // Full GREEN
+///    data[2] = [0_u8, 0_u8, 0xFF_u8].into();  // Full BLUE
+///
+///    leds.write(data.iter().cloned());
+/// }
 ///
 /// ```
 ///

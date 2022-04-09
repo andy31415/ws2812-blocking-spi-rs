@@ -42,7 +42,7 @@ fn nibble_16_u32(nibble: u8) -> u32 {
 /// Proc macro that generates a constant with the given name
 /// that contains all 256 combinations of patters to send a byte to WS2812
 ///
-/// #Examples:
+/// # Example:
 ///
 /// ```
 ///    // This creates a `const WRITE_4_BYTE_CONSTANTS: [[u8;4]; 256]
