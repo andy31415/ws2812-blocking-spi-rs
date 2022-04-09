@@ -1,0 +1,23 @@
+[package]
+name = "ws2821-blocking-spi"
+version = "0.1.0"
+edition = "2021"
+authors = ["Andrei Litvin <andy314@gmail.com>"]
+categories = [
+    "embedded",
+    "no-std",
+    "hardware-support"
+]
+keywords = [
+    "neopixel",
+    "ws2812"
+]
+license = "MIT or Apache-2.0"
+readme = "README.md"
+
+[dependencies]
+smart-leds-trait = "0.2.0"
+embedded-hal = "0.2.4"
+
+# CodeGen macros
+ws2812-spi-write-constants = { path = "ws2812-spi-write-constants" }

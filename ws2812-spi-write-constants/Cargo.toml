@@ -1,0 +1,16 @@
+[package]
+name = "ws2812-spi-write-constants"
+version = "0.1.0"
+edition = "2021"
+authors = ["Andrei Litvin <andy314@gmail.com>"]
+
+[dependencies]
+proc-macro2 = "1.0"
+quote = "1.0"
+
+[dependencies.syn]
+features = ["extra-traits", "full"]
+version = "1.0"
+
+[lib]
+proc-macro = true
