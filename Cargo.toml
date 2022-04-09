@@ -12,7 +12,7 @@ keywords = [
     "neopixel",
     "ws2812"
 ]
-license = "MIT or Apache-2.0"
+license = "MIT OR Apache-2.0"
 readme = "README.md"
 
 [dependencies]
