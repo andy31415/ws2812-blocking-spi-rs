@@ -18,23 +18,19 @@ ws2812_constants!(WRITE_4_BYTE_CONSTANTS);
 /// # Examples:
 ///
 /// ```
-/// use embedded_hal::blocking::spi::Write;
 /// use ws2812_blocking_spi::Ws2812BlockingWriter;
 ///
-/// fn create<SPI: Write<u8>>(spi: SPI) -> Ws2812BlockingWriter<SPI> {
-///    Ws2812BlockingWriter::new(spi)
-/// }
-///
-/// ```
-///
-/// ```
 /// use embedded_hal::blocking::spi::Write;
-/// use ws2812_blocking_spi::Ws2812BlockingWriter;
 /// use smart_leds_trait::{RGB8, SmartLedsWrite};
 ///
-/// fn show<SPI: Write<u8>>(leds: &mut Ws2812BlockingWriter<SPI>) {
+/// //
+/// // Displays 3 LEDs: red, green and blue
+/// //
+/// fn show<SPI: Write<u8>>(spi: SPI) {
+///    let mut leds = Ws2812BlockingWriter::new(spi);
+///
 ///    let mut data = [RGB8::default(); 3];
-///    
+///
 ///    data[0] = [0xFF_u8, 0_u8, 0_u8].into();  // Full RED
 ///    data[1] = [0_u8, 0xFF_u8, 0_u8].into();  // Full GREEN
 ///    data[2] = [0_u8, 0_u8, 0xFF_u8].into();  // Full BLUE
