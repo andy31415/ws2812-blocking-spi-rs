@@ -1,3 +1,10 @@
+//! # Use ws2812 leds via the `embedded_hal::blocking::spi::Write` trait
+//!
+//! - For usage with `smart-leds`
+//! - Implements the `SmartLedsWrite` trait
+//!
+//! Needs a type implementing the `blocking::spi::Write` trait.
+
 #![no_std]
 
 use embedded_hal::blocking::spi::Write;
@@ -5,15 +12,29 @@ use smart_leds_trait::{SmartLedsWrite, RGB8};
 use ws2812_spi_write_constants::ws2812_constants;
 
 
-ws2812_constants!(WRITE_3_BYTE_CONSTANTS);
+ws2812_constants!(WRITE_4_BYTE_CONSTANTS);
 
-pub struct SpiWrapper<SPI> {
+/// Wraps a SPI Writer to represent a WS2821 LED array.
+///
+/// Examples:
+///
+/// ```
+/// use embedded_hal::blocking::spi::Write;
+/// use ws2812_blocking_spi::Ws2812BlockingWriter;
+///
+/// fn create<SPI: Write<u8>>(spi: SPI) -> Ws2812BlockingWriter<SPI> {
+///    Ws2812BlockingWriter::new(spi)
+/// }    
+///
+/// ```
+///
+pub struct Ws2812BlockingWriter<SPI> {
     spi: SPI,
 }
 
-impl<SPI: Write<u8>> SpiWrapper<SPI> {
+impl<SPI: Write<u8>> Ws2812BlockingWriter<SPI> {
     pub fn new(spi: SPI) -> Self {
-        SpiWrapper { spi }
+        Ws2812BlockingWriter { spi }
     }
 
     fn flush(&mut self) -> Result<(), SPI::Error> {
@@ -22,7 +43,7 @@ impl<SPI: Write<u8>> SpiWrapper<SPI> {
     }
 }
 
-impl<SPI: Write<u8>> SmartLedsWrite for SpiWrapper<SPI> {
+impl<SPI: Write<u8>> SmartLedsWrite for Ws2812BlockingWriter<SPI> {
     type Error = SPI::Error;
     type Color = RGB8;
 
@@ -36,9 +57,9 @@ impl<SPI: Write<u8>> SmartLedsWrite for SpiWrapper<SPI> {
         for item in iterator {
             let item = item.into();
 
-            buffer[0..4].copy_from_slice(&WRITE_3_BYTE_CONSTANTS[item.g as usize]);
-            buffer[4..8].copy_from_slice(&WRITE_3_BYTE_CONSTANTS[item.r as usize]);
-            buffer[8..12].copy_from_slice(&WRITE_3_BYTE_CONSTANTS[item.b as usize]);
+            buffer[0..4].copy_from_slice(&WRITE_4_BYTE_CONSTANTS[item.g as usize]);
+            buffer[4..8].copy_from_slice(&WRITE_4_BYTE_CONSTANTS[item.r as usize]);
+            buffer[8..12].copy_from_slice(&WRITE_4_BYTE_CONSTANTS[item.b as usize]);
 
             self.spi.write(&buffer)?
         }

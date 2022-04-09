@@ -7,6 +7,9 @@ The ws2821 crate that is part of the smart-leds project is using a
 `FullDuplex` implementation of SPI which is not implemented on
 all platforms.
 
+This crate pre-generates constants for all 8-bit patterns required to
+send to LEDs and this adds a 1KB flash space overhead.
+
 ## Usage example
 
 

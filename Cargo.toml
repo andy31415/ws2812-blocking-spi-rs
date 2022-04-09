@@ -1,5 +1,5 @@
 [package]
-name = "ws2821-blocking-spi"
+name = "ws2812-blocking-spi"
 version = "0.1.0"
 edition = "2021"
 authors = ["Andrei Litvin <andy314@gmail.com>"]
