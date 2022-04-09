@@ -3,7 +3,7 @@ name = "ws2812-spi-write-constants"
 version = "0.1.0"
 edition = "2021"
 authors = ["Andrei Litvin <andy314@gmail.com>"]
-license = "MIT or Apache-2.0"
+license = "Apache-2.0 OR MIT"
 description = "ProcMacros for generating SPI constants for use for WS2812 control."
 
 [dependencies]
