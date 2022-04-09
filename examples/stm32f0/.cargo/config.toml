@@ -1,0 +1,23 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+runner = "probe-run --chip STM32F030C8Tx"
+
+rustflags = [
+  "-C", "link-arg=--nmagic",
+  "-C", "link-arg=-Tlink.x",
+]
+
+[build]
+target = "thumbv6m-none-eabi"        # Cortex-M0 and Cortex-M0+
+
+[profile.dev]
+opt-level = 's'
+lto = true
+debug = true
+incremental = true
+
+[profile.release]
+opt-level = 's'
+lto = true
+debug = true
+incremental = true
+
