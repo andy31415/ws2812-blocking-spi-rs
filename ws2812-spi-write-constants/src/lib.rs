@@ -47,7 +47,7 @@ fn nibble_16_u32(nibble: u8) -> u32 {
 /// ```
 ///    // This creates a `const WRITE_4_BYTE_CONSTANTS: [[u8;4]; 256]
 ///    // Note that this requires 1K flash
-///    use ws2812-spi-write-constants::ws2812_constants;
+///    use ws2812_spi_write_constants::ws2812_constants;
 ///
 ///    ws2812_constants!(WRITE_4_BYTE_CONSTANTS);
 ///
@@ -60,7 +60,6 @@ fn nibble_16_u32(nibble: u8) -> u32 {
 ///        WRITE_4_BYTE_CONSTANTS[0b0100_1100], 
 ///        [0b0100_0111, 0b0100_0100, 0b0111_0111, 0b0100_0100]
 ///    );
-///
 ///    
 /// ```
 #[proc_macro]
