@@ -15,6 +15,7 @@ keywords = [
 license = "Apache-2.0 OR MIT"
 readme = "README.md"
 description = "Driver based on embedded_hal::blocking::spi::Write for WS2812"
+repository = "https://github.com/andy31415/ws2812-blocking-spi-rs"
 
 [dependencies]
 smart-leds-trait = "0.2.0"
