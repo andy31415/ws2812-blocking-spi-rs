@@ -11,7 +11,6 @@ use embedded_hal::blocking::spi::Write;
 use smart_leds_trait::{SmartLedsWrite, RGB8};
 use ws2812_spi_write_constants::ws2812_constants;
 
-
 ws2812_constants!(WRITE_4_BYTE_CONSTANTS);
 
 /// Wraps a SPI Writer to represent a WS2821 LED array.
@@ -68,8 +67,3 @@ impl<SPI: Write<u8>> SmartLedsWrite for Ws2812BlockingWriter<SPI> {
         Ok(())
     }
 }
-
-
-
-
-

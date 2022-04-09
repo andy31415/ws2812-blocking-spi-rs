@@ -24,9 +24,9 @@ fn bit_4_u32(v: bool) -> u32 {
     //
     // https://michaeltien8901.github.io/stm32/2019/01/06/STM32F072-MOSI-Idle-State.html
     if v {
-        0b0111 as u32
+        0b0111_u32
     } else {
-        0b0100 as u32
+        0b0100_u32
     }
 }
 
@@ -36,7 +36,7 @@ fn nibble_16_u32(nibble: u8) -> u32 {
     (bit_4_u32((nibble & 0b1000) != 0) << 12)
         | (bit_4_u32((nibble & 0b0100) != 0) << 8)
         | (bit_4_u32((nibble & 0b0010) != 0) << 4)
-        | (bit_4_u32((nibble & 0b0001) != 0) << 0)
+        | (bit_4_u32((nibble & 0b0001) != 0))
 }
 
 /// Proc macro that generates a constant with the given name
@@ -52,12 +52,12 @@ fn nibble_16_u32(nibble: u8) -> u32 {
 ///    ws2812_constants!(WRITE_4_BYTE_CONSTANTS);
 ///
 ///    assert_eq!(
-///        WRITE_4_BYTE_CONSTANTS[0b0000_0000], 
+///        WRITE_4_BYTE_CONSTANTS[0b0000_0000],
 ///        [0b0100_0100, 0b0100_0100, 0b0100_0100, 0b0100_0100]
 ///    );
 ///
 ///    assert_eq!(
-///        WRITE_4_BYTE_CONSTANTS[0b0100_1100], 
+///        WRITE_4_BYTE_CONSTANTS[0b0100_1100],
 ///        [0b0100_0111, 0b0100_0100, 0b0111_0111, 0b0100_0100]
 ///    );
 ///    
